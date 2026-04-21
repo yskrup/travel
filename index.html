@@ -3,119 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- ✏️ CUSTOMIZE: Change "My Travel Map" to your own name or site title -->
   <title>My Travel Map</title>
-  <meta name="description" content="Places I've been — an interactive travel map." />
 
-  <!-- Leaflet CSS: the open-source mapping library -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-  <!-- MarkerCluster CSS: groups nearby pins when zoomed out so the map stays clean -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-
-  <!-- Google Fonts: Cormorant Garamond (elegant headings) + IBM Plex Sans (clean UI) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-
-  <!-- Your stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <div id="app">
-
-    <!-- ═══════════════════════════════════════════
-         HEADER BAR
-    ═══════════════════════════════════════════ -->
-    <header id="header">
-      <div class="header-inner">
-
-        <!-- ✏️ CUSTOMIZE: Change "Somewhere I've Been" to your site title -->
-        <div class="header-left">
-          <h1 class="site-title">Travel blog of Yulia Skrupskaya</h1>
-        </div>
-
-        <!-- Auto-calculated stats: number of countries and cities from your data -->
-        <div class="header-right">
-          <span id="stat-countries" class="stat"></span>
-          <span class="stat-sep">·</span>
-          <span id="stat-cities" class="stat"></span>
-        </div>
-
+  <!-- ── HEADER ── -->
+  <header id="header">
+    <div class="header-inner">
+      <h1 class="site-title">Somewhere I've Been</h1><!-- ✏️ Change this -->
+      <div class="header-stats">
+        <span id="stat-countries"></span>
+        <span class="sep">·</span>
+        <span id="stat-cities"></span>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- ═══════════════════════════════════════════
-         MAIN AREA: map + sliding panel
-    ═══════════════════════════════════════════ -->
-    <div id="main">
+  <!-- ── MAP ── -->
+  <div id="map"></div>
 
-      <!-- The interactive map renders here (Leaflet fills this div) -->
-      <div id="map"></div>
+  <!-- ── SCROLLABLE CONTENT ── -->
+  <main id="content">
 
-      <!-- Side panel — hidden by default, appears when you click a city marker -->
-      <aside id="panel" class="panel-hidden" role="complementary" aria-label="City details">
-
-        <!-- Close button (top-right of panel) -->
-        <button id="panel-close" aria-label="Close panel" title="Close">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="1" y1="1" x2="13" y2="13"/>
-            <line x1="13" y1="1" x2="1" y2="13"/>
-          </svg>
-        </button>
-
-        <!-- Panel content is injected here by app.js when a city is clicked -->
-        <div id="panel-inner"></div>
-
-      </aside>
-
-    </div><!-- /#main -->
-
-  </div><!-- /#app -->
-
-
-  <!-- ═══════════════════════════════════════════
-       LIGHTBOX — full-screen photo viewer
-  ═══════════════════════════════════════════ -->
-  <div id="lightbox" class="lightbox-hidden" role="dialog" aria-modal="true" aria-label="Photo viewer">
-    <div id="lightbox-backdrop"></div>
-    <div id="lightbox-content">
-      <button id="lightbox-close" aria-label="Close photo viewer" title="Close (Esc)">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="2" y1="2" x2="14" y2="14"/>
-          <line x1="14" y1="2" x2="2" y2="14"/>
-        </svg>
+    <!-- Country filter pills -->
+    <div id="filter-bar">
+      <button class="filter-btn active" data-country="all">
+        <span class="filter-flag">🌍</span>
+        <span class="filter-label">All</span>
       </button>
-      <button id="lightbox-prev" aria-label="Previous photo" title="Previous (←)">&#8592;</button>
-      <button id="lightbox-next" aria-label="Next photo" title="Next (→)">&#8594;</button>
-      <div id="lightbox-img-wrap">
-        <img id="lightbox-img" src="" alt="" />
-      </div>
-      <p id="lightbox-caption"></p>
-      <p id="lightbox-counter"></p>
+      <!-- More buttons injected by app.js -->
+    </div>
+
+    <!-- List of cities, newest first -->
+    <div id="city-list"></div>
+
+  </main>
+
+  <!-- ── DETAIL PANEL ── -->
+  <div id="panel-overlay"></div>
+  <aside id="panel" class="panel-hidden">
+    <button id="panel-close" aria-label="Close">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="1" y1="1" x2="12" y2="12"/><line x1="12" y1="1" x2="1" y2="12"/>
+      </svg>
+    </button>
+    <div id="panel-inner"></div>
+  </aside>
+
+  <!-- ── LIGHTBOX ── -->
+  <div id="lightbox" class="lightbox-hidden">
+    <div id="lb-backdrop"></div>
+    <div id="lb-content">
+      <button id="lb-close">✕</button>
+      <button id="lb-prev">←</button>
+      <button id="lb-next">→</button>
+      <img id="lb-img" src="" alt="" />
+      <p id="lb-caption"></p>
+      <p id="lb-counter"></p>
     </div>
   </div>
 
-
-  <!-- ═══════════════════════════════════════════
-       SCRIPTS (load order matters — don't rearrange)
-  ═══════════════════════════════════════════ -->
-
-  <!-- Leaflet JS — the map engine -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <!-- MarkerCluster JS — groups pins automatically -->
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-
-  <!-- data.js — YOUR travel data. This is the only file you edit regularly. -->
   <script src="data.js"></script>
-
-  <!-- app.js — the map logic. You don't need to touch this. -->
   <script src="app.js"></script>
-
 </body>
 </html>
