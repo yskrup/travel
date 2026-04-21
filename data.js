@@ -64,7 +64,7 @@ const TRAVEL_DATA = [
           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776144/IMG_2878_zilvfu.jpg", caption: "Australian soulmate" }
           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776140/IMG_2757_gljask.jpg", caption: "The fog is coming" }
            { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776146/IMG_2898_j0fvur.jpg", caption: "More fog is coming" }
-           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776134/IMG_2737_2_ncvipq.jpg", caption: "My future dream in 50 years" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776134/IMG_2737_2_ncvipq.jpg", caption: "Hopefully my future in 50 years" }
         ]
       }
 
