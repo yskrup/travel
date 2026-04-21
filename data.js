@@ -24,39 +24,47 @@ const TRAVEL_DATA = [
 
 
   // ════════════════════
-  // JAPAN 🇯🇵
+  // SWITZERLAND 🇨🇭
   // ════════════════════
   {
-    country: "Japan",
-    flag: "🇯🇵",
+    country: "Switzerland",
+    flag: "🇨🇭",
     cities: [
 
       {
-        name: "Tokyo",
-        lat: 35.6762,
-        lng: 139.6503,
-        dateFrom: "2023-03-10",
-        dateTo:   "2023-03-17",
-        visited:  "March 2023",
-        notes: "Tokyo completely exceeded my expectations. The city is enormous but somehow feels navigable — every neighbourhood has its own personality. Shibuya is chaotic and electric, Yanaka feels like stepping back 100 years, and Shinjuku at night is science fiction made real.\n\nBest meal: a tiny ramen shop with a queue out the door at 11pm. Totally worth it.\n\nTip: get a Suica card on day one.",
+        name: "Interlaken",
+        lat: 46.683,
+        lng: 7.850,
+        dateFrom: "2025-10-13",
+        dateTo:   "2023-10-20",
+        visited:  "October 2025",
+        notes: "It was a random city on the map near the mountains with the cheapest accomodation for the upcoming days where I could go right away after unexpectedly earlier finished vipassana. At the end I fell in love with this place. It's surrounded by breathtaking mountains, there are 2 lakes, numerous sports facilities.\n\nTip: Get to know the locals and follow non-touristic paths.",
         photos: [
-          { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=900&auto=format&fit=crop", caption: "Shibuya crossing at night" },
-          { url: "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=900&auto=format&fit=crop", caption: "Senso-ji temple, Asakusa" },
-          { url: "https://images.unsplash.com/photo-1480796927426-f609979314bd?w=900&auto=format&fit=crop", caption: "Shinjuku at dusk" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776774904/IMG_2937_pf0arh.jpg", caption: "Höhematte Park" },
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776774924/IMG_3170_rrdrdb.jpg", caption: "Aare river" },
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776774910/IMG_3063_rnt6go.jpg", caption: "Balmers Hostel is Switzerland's oldest hostel" }
         ]
       },
 
       {
-        name: "Kyoto",
-        lat: 35.0116,
-        lng: 135.7681,
-        dateFrom: "2023-03-17",
-        dateTo:   "2023-03-21",
-        visited:  "March 2023",
-        notes: "Kyoto is what Tokyo isn't — quiet, ancient, contemplative. Go to Fushimi Inari at dusk when the light turns the torii gates orange. The path up the mountain takes about 2 hours — most tourists only do the first 20 minutes, so keep going.",
+        name: "Kandersteg",
+        lat: 46.4958,
+        lng: 7.6732,
+        dateFrom: "2025-10-14",
+        dateTo:   "2025-10-14",
+        visited:  "October 2025",
+        notes: "Amazing hike to the lake Oeschinensee. The fog there lives its own live. We were lucky to see the lake when the fog went for a walk",
         photos: [
-          { url: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=900&auto=format&fit=crop", caption: "Fushimi Inari at dusk" },
-          { url: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=900&auto=format&fit=crop", caption: "Bamboo grove, Arashiyama" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776054/IMG_0137_mi3xex.jpg", caption: "Everyone wanted a picture with the beautiful flag of Switzerland" },
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776119/IMG_1358_kwbcol.jpg", caption: "Our hiking team except the photographer" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776119/IMG_1358_kwbcol.jpg", caption: "Our hiking team except the photographer" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776137/IMG_2741_pdk5sk.jpg", caption: "Crystal clean and extremely cold water " }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776141/IMG_2813_vbj1mt.jpg", caption: "Seeing such a beautiful nature the next day after the vipassana was such a intense immersion back to life" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776143/IMG_2838_unexcc.jpg", caption: "I want this bench and the view back at home" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776144/IMG_2878_zilvfu.jpg", caption: "Australian soulmate" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776140/IMG_2757_gljask.jpg", caption: "The fog is coming" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776146/IMG_2898_j0fvur.jpg", caption: "More fog is coming" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776134/IMG_2737_2_ncvipq.jpg", caption: "My future dream in 50 years" }
         ]
       }
 
