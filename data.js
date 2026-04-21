@@ -56,14 +56,13 @@ const TRAVEL_DATA = [
         notes: "Amazing hike to the lake Oeschinensee. The fog there lives its own live. We were lucky to see the lake when the fog went for a walk",
         photos: [
           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776054/IMG_0137_mi3xex.jpg", caption: "Everyone wanted a picture with the beautiful flag of Switzerland" },
-          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776119/IMG_1358_kwbcol.jpg", caption: "Our hiking team except the photographer" }
-          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776119/IMG_1358_kwbcol.jpg", caption: "Our hiking team except the photographer" }
-          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776137/IMG_2741_pdk5sk.jpg", caption: "Crystal clean and extremely cold water " }
-          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776141/IMG_2813_vbj1mt.jpg", caption: "Seeing such a beautiful nature the next day after the vipassana was such a intense immersion back to life" }
-          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776143/IMG_2838_unexcc.jpg", caption: "I want this bench and the view back at home" }
-          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776144/IMG_2878_zilvfu.jpg", caption: "Australian soulmate" }
-          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776140/IMG_2757_gljask.jpg", caption: "The fog is coming" }
-           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776146/IMG_2898_j0fvur.jpg", caption: "More fog is coming" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776119/IMG_1358_kwbcol.jpg", caption: "Our hiking team except the photographer" },
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776137/IMG_2741_pdk5sk.jpg", caption: "Crystal clean and extremely cold water " },
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776141/IMG_2813_vbj1mt.jpg", caption: "Seeing such a beautiful nature the next day after the vipassana was such a intense immersion back to life" },
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776143/IMG_2838_unexcc.jpg", caption: "I want this bench and the view back at home" },
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776144/IMG_2878_zilvfu.jpg", caption: "Australian soulmate" },
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776140/IMG_2757_gljask.jpg", caption: "The fog is coming" },
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776146/IMG_2898_j0fvur.jpg", caption: "More fog is coming" },
            { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776776134/IMG_2737_2_ncvipq.jpg", caption: "Hopefully my future in 50 years" }
         ]
       }
