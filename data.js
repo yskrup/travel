@@ -133,13 +133,16 @@ const TRAVEL_DATA = [
         name: "Reykjavík",
         lat: 64.1466,
         lng: -21.9426,
-        dateFrom: "2024-01-08",
-        dateTo:   "2024-01-14",
-        visited:  "January 2024",
-        notes: "Came for the Northern Lights. They showed up on night two — the most disorienting and beautiful thing I've ever seen. No photograph fully captures it. The sky moves.\n\nRented a car for the Golden Circle. Geysir, Gullfoss, and Þingvellir in one day. The landscape is genuinely lunar.",
+        dateFrom: "2017-08-15",
+        dateTo:   "2017-08-28",
+        visited:  "August 2017",
+        notes: "Came to Iceland to volunteer and spent the 1st day on my own exploring the capital city on foot.\n\n I remember the cleanness of the streets, golf clubs, residential ares and the views. Unfortunalety, I don't remember where are all the photos and found only these.",
         photos: [
-          { url: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=900&auto=format&fit=crop", caption: "Northern Lights over Iceland" },
-          { url: "https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=900&auto=format&fit=crop", caption: "Hallgrímskirkja in winter" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776778642/IMG_3484_ehosrf.jpg", caption: "Volunteering" },
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776778638/IMG_3483_goj4xo.jpg", caption: "Hiking around" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776778637/IMG_2744_b0sggj.jpg", caption: "First northern lights in my life" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776778634/IMG_3171_zrowc2.jpg", caption: "I met a wonderful friend from Germany during this volunterring camp. Later on she visited me, we also travelled in the Baltic States together with our parents. We still keep in touch sending postcards!" }
+          { url: "https://youtu.be/t0AQOVQqO1s?si=yvS0-gOxi0s31gpZ", caption: "The video from the places we visited" }
         ]
       }
 
