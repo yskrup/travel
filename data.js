@@ -73,24 +73,34 @@ const TRAVEL_DATA = [
 
 
   // ════════════════════
-  // PORTUGAL 🇵🇹
+  // FRANCE 🇫🇷
   // ════════════════════
   {
-    country: "Portugal",
-    flag: "🇵🇹",
+    country: "France",
+    flag: "🇫🇷",
     cities: [
 
       {
-        name: "Lisbon",
-        lat: 38.7169,
-        lng: -9.1395,
-        dateFrom: "2022-09-05",
-        dateTo:   "2022-09-10",
-        visited:  "September 2022",
-        notes: "Lisbon is a city for wandering. I got happily lost in Alfama every day — the tangle of narrow streets feels almost medieval, and you keep stumbling onto tiny viewpoints (miradouros) with sweeping views over the terracotta rooftops.\n\nThe pastéis de nata at Pastéis de Belém were the best thing I ate that year.",
+        name: "Montpellier",
+        lat: 43.6119,
+        lng: 3.8772,
+        dateFrom: "2025-10-06",
+        dateTo:   "2025-10-76",
+        visited:  "October 2025",
+        notes: "Initially Montpellier was just a transfer location on my way to Switzerland. At the end it was a charming city where I enjoyed the morning sun, spoke French, got compliments in French and could enjoy the style of people and town especially after Spain :D",
         photos: [
-          { url: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&auto=format&fit=crop", caption: "Rooftops of Alfama" },
-          { url: "https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=900&auto=format&fit=crop", caption: "Miradouro da Graça" }
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777780/IMG_1935_zd6syp.jpg", caption: "The city greeted me with colourful trams" },
+          { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777786/IMG_1952_wu6qg9.jpg", caption: "Nice buildings" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777764/IMG_1960_xlagby.jpg", caption: "And more nice buildings" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777785/IMG_1937_xru6er.jpg", caption: "And colourful art hotel" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777769/IMG_1986_ggplna.jpg", caption: "Sunrise from the hotel" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777801/IMG_2069_lsj5jc.jpg", caption: "Sunrise in the city" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777797/IMG_2006_bi0ny0.jpg", caption: "Happy me on empty streets" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777767/IMG_2013_pcnd21.jpg", caption: "Streets of Montpellier" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777765/IMG_2062_mamw2t.jpg", caption: "Old ruins" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777782/IMG_2116_csspg9.jpg", caption: "The song my heart" }
+           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777776/IMG_2138_xgfjmk.jpg", caption: "I was thinking of buying it for my apartment but understood that nobody would understand" }
+            { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776777772/IMG_2095_scbxct.jpg", caption: "I love these trams" }
         ]
       },
 
