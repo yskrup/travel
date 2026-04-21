@@ -1,0 +1,678 @@
+/* ═══════════════════════════════════════════════════════════════
+   style.css — Travel Map Styles
+   ═══════════════════════════════════════════════════════════════
+   
+   ✏️ CUSTOMIZATION: To change the look of your site, edit the
+   CSS variables in the :root block below. No other CSS knowledge
+   needed — just change the values after the colon.
+   ═══════════════════════════════════════════════════════════════ */
+
+
+/* ───────────────────────────────────────────
+   DESIGN TOKENS (CSS Variables)
+   Change these to restyle the entire site.
+─────────────────────────────────────────── */
+:root {
+  /* Colors */
+  --color-bg:          #f9f6f0;          /* Warm off-white page background */
+  --color-surface:     #ffffff;          /* Panel and header background */
+  --color-text:        #1c1917;          /* Main text — near black */
+  --color-text-muted:  #78716c;          /* Secondary text, dates, labels */
+  --color-border:      #e7e5e0;          /* Dividers and outlines */
+  --color-accent:      #c2410c;          /* Accent — warm terracotta */
+  --color-accent-soft: #fff0e8;          /* Soft accent background */
+  --color-marker:      #1c1917;          /* Map dot color */
+  --color-marker-ring: rgba(194,65,12,0.25); /* Glow ring on hover */
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;   /* Headings */
+  --font-body:    'IBM Plex Sans', system-ui, sans-serif; /* UI text */
+
+  /* Layout */
+  --header-height: 56px;
+  --panel-width:   420px;
+  --panel-pad:     32px;
+
+  /* Misc */
+  --radius:   6px;
+  --shadow:   0 4px 32px rgba(28, 25, 23, 0.10);
+  --trans:    0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ───────────────────────────────────────────
+   RESET & BASE
+─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;          /* The map handles its own scrolling */
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+
+/* ───────────────────────────────────────────
+   APP SHELL
+─────────────────────────────────────────── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;    /* "dynamic viewport height" — handles mobile browser chrome */
+}
+
+
+/* ───────────────────────────────────────────
+   HEADER
+─────────────────────────────────────────── */
+#header {
+  height: var(--header-height);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 500;
+  flex-shrink: 0;
+}
+
+.header-inner {
+  height: 100%;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.stat-sep {
+  font-size: 12px;
+  color: var(--color-border);
+}
+
+
+/* ───────────────────────────────────────────
+   MAIN LAYOUT (map + panel container)
+─────────────────────────────────────────── */
+#main {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* ───────────────────────────────────────────
+   MAP
+─────────────────────────────────────────── */
+#map {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--color-bg);
+}
+
+/* Attribution link — keep it legal but subtle */
+.leaflet-control-attribution {
+  background: rgba(249,246,240,0.85) !important;
+  backdrop-filter: blur(4px);
+  font-size: 10px !important;
+  font-family: var(--font-body) !important;
+  color: var(--color-text-muted) !important;
+  border-radius: 4px 0 0 0 !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--color-text-muted) !important;
+}
+
+/* Zoom buttons */
+.leaflet-control-zoom a {
+  font-family: var(--font-body) !important;
+  color: var(--color-text) !important;
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: var(--color-bg) !important;
+}
+
+
+/* ───────────────────────────────────────────
+   CITY MARKERS (the dots on the map)
+─────────────────────────────────────────── */
+/* The outer wrapper Leaflet creates for divIcon */
+.leaflet-marker-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Our custom dot */
+.city-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-marker);
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.9);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+/* Hover ring effect */
+.city-dot:hover {
+  transform: scale(1.8);
+  box-shadow: 0 0 0 5px var(--color-marker-ring), 0 1px 3px rgba(0,0,0,0.25);
+  background: var(--color-accent);
+}
+
+/* Tooltip that appears on marker hover */
+.leaflet-tooltip.city-tooltip {
+  background: var(--color-text);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  padding: 4px 9px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+.leaflet-tooltip.city-tooltip::before {
+  border-top-color: var(--color-text) !important;
+}
+
+
+/* ───────────────────────────────────────────
+   MARKER CLUSTERS (grouped dots)
+─────────────────────────────────────────── */
+/* Our fully custom cluster icon */
+.custom-cluster {
+  width: 34px;
+  height: 34px;
+  background: rgba(28,25,23,0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-cluster span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(28,25,23,0.78);
+  border-radius: 50%;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* Fallback styles for default MarkerCluster icons */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background-color: rgba(28,25,23,0.12) !important;
+}
+
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background-color: rgba(28,25,23,0.75) !important;
+  color: #ffffff !important;
+  font-family: var(--font-body) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em;
+}
+
+
+/* ───────────────────────────────────────────
+   SIDE PANEL
+─────────────────────────────────────────── */
+#panel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: var(--panel-width);
+  height: 100%;
+  background: var(--color-surface);
+  border-left: 1px solid var(--color-border);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 200;
+  transition: transform var(--trans);
+  box-shadow: var(--shadow);
+
+  /* Custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+#panel::-webkit-scrollbar { width: 4px; }
+#panel::-webkit-scrollbar-track { background: transparent; }
+#panel::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+
+/* Hidden state — panel slides off screen to the right */
+#panel.panel-hidden {
+  transform: translateX(calc(var(--panel-width) + 30px));
+  pointer-events: none;
+}
+
+/* Close button — floats in top-right corner of panel */
+#panel-close {
+  position: sticky;
+  top: 20px;
+  float: right;
+  margin: 20px 20px 0 0;
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: all 0.15s;
+}
+
+#panel-close:hover {
+  background: var(--color-border);
+  color: var(--color-text);
+  transform: scale(1.05);
+}
+
+/* The scrollable content area */
+#panel-inner {
+  padding: var(--panel-pad);
+  padding-top: 28px;
+  clear: both;           /* Clear the floated close button */
+}
+
+/* City name */
+.panel-city-name {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+/* Country + dates row */
+.panel-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.panel-country {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.panel-meta-sep {
+  width: 3px;
+  height: 3px;
+  background: var(--color-border);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.panel-dates {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* Section label (NOTES, PHOTOS, etc.) */
+.section-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* Section wrapper */
+.panel-section {
+  margin-bottom: 36px;
+}
+
+/* Notes text */
+.panel-notes {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--color-text);
+  white-space: pre-wrap;    /* Preserves your line breaks */
+  font-weight: 300;
+}
+
+/* Photo grid */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+
+/* First photo spans full width for a feature-image feel */
+.photo-grid .photo-item:first-child {
+  grid-column: 1 / -1;
+}
+
+.photo-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  cursor: pointer;
+}
+
+.photo-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.3s ease, opacity 0.2s;
+}
+
+.photo-item:first-child img {
+  aspect-ratio: 16 / 9;   /* Feature image is wider */
+}
+
+.photo-item:hover img {
+  transform: scale(1.03);
+  opacity: 0.92;
+}
+
+/* Caption overlay on photo hover */
+.photo-caption-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 10px;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+  color: rgba(255,255,255,0.9);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.photo-item:hover .photo-caption-overlay {
+  opacity: 1;
+}
+
+/* Empty state */
+.no-content {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-family: var(--font-display);
+  padding: 4px 0;
+}
+
+
+/* ───────────────────────────────────────────
+   LIGHTBOX (full-screen photo viewer)
+─────────────────────────────────────────── */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--trans);
+}
+
+#lightbox.lightbox-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 18, 16, 0.94);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+#lightbox-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 92vw;
+  max-height: 90vh;
+}
+
+#lightbox-img-wrap {
+  max-width: 88vw;
+  max-height: 78vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.5);
+}
+
+#lightbox-caption {
+  color: rgba(255,255,255,0.72);
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 14px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  min-height: 1.2em;
+}
+
+#lightbox-counter {
+  color: rgba(255,255,255,0.35);
+  font-size: 11px;
+  font-weight: 400;
+  margin-top: 4px;
+  letter-spacing: 0.08em;
+}
+
+/* Lightbox buttons */
+#lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  color: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  z-index: 2;
+}
+
+#lightbox-prev,
+#lightbox-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  color: rgba(255,255,255,0.8);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, opacity 0.15s;
+  z-index: 2;
+}
+
+#lightbox-prev { left: 20px; }
+#lightbox-next { right: 20px; }
+
+#lightbox-close:hover,
+#lightbox-prev:hover,
+#lightbox-next:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+#lightbox-prev:disabled,
+#lightbox-next:disabled,
+.lb-btn-hidden {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+
+/* ───────────────────────────────────────────
+   MOBILE RESPONSIVE (≤ 640px)
+─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  :root {
+    --header-height: 48px;
+    --panel-pad: 20px;
+  }
+
+  .site-title {
+    font-size: 15px;
+  }
+
+  .header-inner {
+    padding: 0 16px;
+  }
+
+  /* On mobile the panel slides up from the bottom */
+  #panel {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 72vh;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+    border-radius: 14px 14px 0 0;
+    box-shadow: 0 -4px 32px rgba(0,0,0,0.12);
+  }
+
+  #panel.panel-hidden {
+    transform: translateY(calc(72vh + 30px));
+  }
+
+  /* Pull handle indicator for mobile */
+  #panel::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    background: var(--color-border);
+    border-radius: 2px;
+    margin: 14px auto 0;
+    flex-shrink: 0;
+  }
+
+  #panel-close {
+    top: 10px;
+  }
+
+  .panel-city-name {
+    font-size: 28px;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #lightbox-prev { left: 8px; }
+  #lightbox-next { right: 8px; }
+
+  #lightbox-prev,
+  #lightbox-next {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
+
+
+/* ───────────────────────────────────────────
+   UTILITY
+─────────────────────────────────────────── */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
