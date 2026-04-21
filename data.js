@@ -142,7 +142,6 @@ const TRAVEL_DATA = [
           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776778638/IMG_3483_goj4xo.jpg", caption: "Hiking around" }
           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776778637/IMG_2744_b0sggj.jpg", caption: "First northern lights in my life" }
           { url: "https://res.cloudinary.com/dpdd7tzw8/image/upload/v1776778634/IMG_3171_zrowc2.jpg", caption: "I met a wonderful friend from Germany during this volunterring camp. Later on she visited me, we also travelled in the Baltic States together with our parents. We still keep in touch sending postcards!" }
-          { url: "https://youtu.be/t0AQOVQqO1s?si=yvS0-gOxi0s31gpZ", caption: "The video from the places we visited" }
         ]
       }
 
