@@ -13,50 +13,81 @@
 </head>
 <body>
 
-  <!-- ── HEADER ── -->
-  <header id="header">
-    <div class="header-inner">
-      <h1 class="site-title">Somewhere I've Been</h1><!-- ✏️ Change this -->
-      <div class="header-stats">
-        <span id="stat-countries"></span>
-        <span class="sep">·</span>
-        <span id="stat-cities"></span>
+  <!-- ══════════════════════════════════
+       VIEW 1 — MAIN PAGE (map + list)
+  ══════════════════════════════════ -->
+  <div id="view-main">
+
+    <header id="header">
+      <div class="header-inner">
+        <h1 class="site-title">Somewhere I've Been</h1> <!-- ✏️ Change title -->
+        <div class="header-stats">
+          <span id="stat-countries"></span>
+          <span class="sep">·</span>
+          <span id="stat-cities"></span>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- ── MAP ── -->
-  <div id="map"></div>
+    <div id="map"></div>
 
-  <!-- ── SCROLLABLE CONTENT ── -->
-  <main id="content">
+    <main id="content">
+      <div id="filter-bar">
+        <button class="filter-btn active" data-country="all">
+          <span class="filter-flag">🌍</span>
+          <span class="filter-label">All</span>
+        </button>
+      </div>
+      <div id="city-list"></div>
+    </main>
 
-    <!-- Country filter pills -->
-    <div id="filter-bar">
-      <button class="filter-btn active" data-country="all">
-        <span class="filter-flag">🌍</span>
-        <span class="filter-label">All</span>
-      </button>
-      <!-- More buttons injected by app.js -->
-    </div>
+  </div>
 
-    <!-- List of cities, newest first -->
-    <div id="city-list"></div>
 
-  </main>
+  <!-- ══════════════════════════════════
+       VIEW 2 — CITY DETAIL PAGE
+  ══════════════════════════════════ -->
+  <div id="view-city" class="hidden">
 
-  <!-- ── DETAIL PANEL ── -->
-  <div id="panel-overlay"></div>
-  <aside id="panel" class="panel-hidden">
-    <button id="panel-close" aria-label="Close">
-      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <line x1="1" y1="1" x2="12" y2="12"/><line x1="12" y1="1" x2="1" y2="12"/>
-      </svg>
-    </button>
-    <div id="panel-inner"></div>
-  </aside>
+    <header id="city-header">
+      <div class="header-inner">
+        <button id="back-btn" onclick="goBack()">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="10 3 5 8 10 13"/>
+          </svg>
+          Back
+        </button>
+        <span id="city-header-name"></span>
+      </div>
+    </header>
 
-  <!-- ── LIGHTBOX ── -->
+    <article id="city-page">
+      <div id="city-page-inner">
+
+        <!-- City title -->
+        <div id="city-title-block">
+          <h1 id="city-page-name"></h1>
+          <p id="city-page-dates"></p>
+        </div>
+
+        <!-- Small map for this city -->
+        <div id="city-map"></div>
+
+        <!-- Notes -->
+        <div id="city-notes-block">
+          <p id="city-notes"></p>
+        </div>
+
+        <!-- Photos — full width, stacked -->
+        <div id="city-photos"></div>
+
+      </div>
+    </article>
+
+  </div>
+
+
+  <!-- LIGHTBOX -->
   <div id="lightbox" class="lightbox-hidden">
     <div id="lb-backdrop"></div>
     <div id="lb-content">
